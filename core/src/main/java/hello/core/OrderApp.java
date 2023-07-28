@@ -10,6 +10,7 @@ import hello.core.order.OrderServiceImpl;
 
 public class OrderApp {
     public static void main(String[] args) {
+        // 회원관련 기능, 주문관련 기능은 서비스객체를 활용
         MemberService memberService =new MemberServiceImpl();
         OrderService orderService = new OrderServiceImpl();
 
