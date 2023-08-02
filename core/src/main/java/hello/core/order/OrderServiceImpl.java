@@ -3,7 +3,10 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     // private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
@@ -15,6 +18,7 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPolicy discountPolicy; // -> 이렇게 바꾸면 인터페이스만 의존하는 상태가 돼 DIP 지켜진다.
 
     // 생성자 주입을 통해 인터페이스에만 의존하게 만들어!!!!!!!!
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
