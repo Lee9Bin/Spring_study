@@ -1,12 +1,15 @@
 package hello.core.scope;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -34,24 +37,35 @@ public class SingletonWithPrototypeTest1 {
         ClientBean clientBean2= ac.getBean(ClientBean.class);
         int count2 = clientBean1.logic();
         // 프로토타입빈이 새로 만들어져야하는데 뭐지 ????
-        assertThat(count2).isEqualTo(2);
+        assertThat(count2).isEqualTo(1);
 
     }
 
     @Scope("singleton")
     static class ClientBean{
-        private final PrototypeBean prototypeBean; // 생성자에서 이미 생성점에서 주입이 돼있어 그래서 같이 쓰다보니 그래
+        // private final PrototypeBean prototypeBean; // 생성자에서 이미 생성점에서 주입이 돼있어 그래서 같이 쓰다보니 그래
 
-        @Autowired // 생성자 하나로 안해두 되긴해
-        public ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
+        // @Autowired // 생성자 하나로 안해두 되긴해
+        // public ClientBean(PrototypeBean prototypeBean) {
+        //     this.prototypeBean = prototypeBean;
+        // }
+
+
+        // ObjectFactory, ObjectProvider를 통해서 하는 방법 -> 과거의 ObjectFactory에서 편의기능이 추가된 ObjectProvider
+        // @Autowired
+        // private ObjectFactory<PrototypeBean> prototypeBeansProvider;
+        // // private ObjectProvider<PrototypeBean> prototypeBeansProvider;
+
+        // JSR-330 Provider 통해서
+        @Autowired
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
-                    prototypeBean.addCount();
-                    int count = prototypeBean.getCount();
-                    return count;
-                }
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
+            prototypeBean.addCount();
+            int count = prototypeBean.getCount();
+            return count;
+        }
         // @Autowired 무식한 방법
         // ApplicationContext applicationContext;
         //
@@ -63,21 +77,21 @@ public class SingletonWithPrototypeTest1 {
         //     }
     }
 
-    @Scope("singleton")
-    static class ClientBean2{
-        private final PrototypeBean prototypeBean; // 생성자에서 이미 생성점에서 주입이 돼있어 그래서 같이 쓰다보니 그래
-
-        @Autowired // 생성자 하나로 안해두 되긴해
-        public ClientBean2(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
-
-        public int logic() {
-            prototypeBean.addCount();
-            int count = prototypeBean.getCount();
-            return count;
-        }
-    }
+    // @Scope("singleton")
+    // static class ClientBean2{
+    //     private final PrototypeBean prototypeBean; // 생성자에서 이미 생성점에서 주입이 돼있어 그래서 같이 쓰다보니 그래
+    //
+    //     @Autowired // 생성자 하나로 안해두 되긴해
+    //     public ClientBean2(PrototypeBean prototypeBean) {
+    //         this.prototypeBean = prototypeBean;
+    //     }
+    //
+    //     public int logic() {
+    //         prototypeBean.addCount();
+    //         int count = prototypeBean.getCount();
+    //         return count;
+    //     }
+    // }
 
     @Scope("prototype")
     static class PrototypeBean {
