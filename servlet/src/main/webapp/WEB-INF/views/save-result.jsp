@@ -13,8 +13,8 @@
 
 <%-- jsp에서 제공하는 프로퍼티 접근법--%>
     <li> id= ${member.id}</li>
-    <li> id= ${member.username}</li>
-    <li> id= ${member.age}</li>
+    <li> username= ${member.username}</li>
+    <li> age= ${member.age}</li>
 
 </ul>
 <a href="/index.html">메인</a>
