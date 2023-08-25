@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+//서블릿 덕분에 자바코드로 html을 작성할 수 있게 됐지만 너무 비효율적이다.
+//그래서 나오게 템플릿 엔진 - jsp, 타임리프, 프리마커 등
 @WebServlet(name = "memberListServlet", urlPatterns = "/servlet/members")
 public class MemberListServlet extends HttpServlet {
 

@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="hello.servlet.domain.member.MemberRepository" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%--jsp 덕분에 html코드에 자바 코드를 넣을 수 있게 됐다.--%>
 <%
   MemberRepository memberRepository = MemberRepository.getInstance();
   List<Member> members = memberRepository.findAll();

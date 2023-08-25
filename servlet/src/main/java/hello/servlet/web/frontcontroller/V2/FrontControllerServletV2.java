@@ -40,8 +40,9 @@ public class FrontControllerServletV2 extends HttpServlet {
             return;
         }
 
+        // 프론트 컨틀롤러가 url매핑 정보를 저장하고 해당 요청에 맞는 서블릿을 호출한뒤
+        // 해당 컨트롤러는 뷰에 대한 이름만 넣어주고 반환해주면 된다. -> 이렇게 하면서 세부 컨트롤러의 중복된 코드를 줄일 수 있다.
         MyView view = controllerV2.process(request, response);
-
         view.render(request, response);
     }
 }

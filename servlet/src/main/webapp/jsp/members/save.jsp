@@ -1,6 +1,9 @@
 <%@ page import="hello.servlet.domain.member.Member" %>
 <%@ page import="hello.servlet.domain.member.MemberRepository" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%--jsp만으로 컨트롤러와 뷰를 구현할 수 있다.--%>
+
 <%
   //request, response 사용 가능
   MemberRepository memberRepository = MemberRepository.getInstance();

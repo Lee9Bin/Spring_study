@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//서블릿은 컨트롤러 역할
+//서블릿은 컨트롤러 역할, jsp는 뷰 역할
 @WebServlet(name = "mvcMemberFromServlet",urlPatterns = "/servlet-mvc/members/new-form")
 public class MvcMemberFromServlet extends HttpServlet {
 

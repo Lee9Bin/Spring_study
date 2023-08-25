@@ -26,11 +26,13 @@ public class MvcMemberSaveServlet extends HttpServlet {
         memberRepository.save(member);
 
 
-        //model에 데이터를 보관한다.
+        //model에 데이터를 보관한다. -> 처음에는 이해 못함 뭐가 모델인데 ? 해결 request 객체를 모델의 역할을 하게 했다.
+        // 그래서 setAttribute() 메서드를 활용해 데이터를 보관
         request.setAttribute("member", member);
 
         String viewPath = "/WEB-INF/views/save-result.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        // 해당 jsp에게 모델을 넘긴다.
         dispatcher.forward(request, response);
 
     }

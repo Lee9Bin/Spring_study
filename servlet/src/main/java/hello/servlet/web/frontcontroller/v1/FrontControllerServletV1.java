@@ -19,6 +19,7 @@ public class FrontControllerServletV1 extends HttpServlet {
 
     private Map<String, ControllerV1> controllerV1Map = new HashMap<>();
 
+    // 생성자가 호출이 되는 부분이 없는데 어떻게? 해결 애플리케이션이 시작시에 서블릿이 초기화 되면서 호출한다.
     public FrontControllerServletV1() {
         controllerV1Map.put("/front-controller/v1/members/new-form", new MemberFormControllerV1());
         controllerV1Map.put("/front-controller/v1/members/save", new MemberSaveControllerV1());
@@ -39,6 +40,5 @@ public class FrontControllerServletV1 extends HttpServlet {
             return;
         }
         controllerV1.process(request, response);
-
     }
 }
