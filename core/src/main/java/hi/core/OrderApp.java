@@ -3,16 +3,14 @@ package hi.core;
 import hi.core.member.Grade;
 import hi.core.member.Member;
 import hi.core.member.MemberService;
-import hi.core.member.MemberServiceImpl;
 import hi.core.order.Order;
 import hi.core.order.OrderService;
-import hi.core.order.OrderServiceImpl;
 
 public class OrderApp {
     public static void main(String[] args) {
-
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long memberId = 1l;
         Member member = new Member(memberId, "memberA", Grade.VIP);
