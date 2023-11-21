@@ -15,6 +15,8 @@ public class MemberApp {
 
         //스프링을 활용
         //AppConfig의 설정 정보를 가지고 스프링이 설정 정보를 설정한다.
+        //ApplicationContext -> 스프링컨테이너라고 생각
+        // BeanFactory 인터페이스의 하위 인터페이스로 부가기능을 추가한 것
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
         //                                                       원하는 것을 꺼낸다. 보통 빈에 등록된 메서드 이름, 타입
         MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
