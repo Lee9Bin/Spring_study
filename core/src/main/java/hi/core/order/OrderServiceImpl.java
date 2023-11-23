@@ -3,10 +3,11 @@ package hi.core.order;
 import hi.core.discount.DiscountPolicy;
 import hi.core.member.Member;
 import hi.core.member.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor //파이널이 붙은 즉 필수값이 붙은 거를 파라미터로 받는 생성자로 만든다.
 public class OrderServiceImpl implements OrderService{
 
     // private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -18,12 +19,6 @@ public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
