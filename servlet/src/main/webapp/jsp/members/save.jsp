@@ -20,8 +20,8 @@
 성공
 <ul>
     <li>id=<%=member.getId()%></li>
-    <li>id=<%=member.getUsername()%></li>
-    <li>id=<%=member.getAge()%></li>
+    <li>username=<%=member.getUsername()%></li>
+    <li>age=<%=member.getAge()%></li>
 </ul>
 <a href="/index.html">메인</a>
 </body>
