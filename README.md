@@ -20,6 +20,12 @@
 
 ### 🌕 [springmvc](https://github.com/Lee9Bin/Spring_study/tree/main/springmvc)
 
+MVC 패턴 구조를 학습했습니다.
+
+### 🌕 [item-service](https://github.com/Lee9Bin/Spring_study/tree/main/item-service)
+
+MVC를 적용한 웹 페이지를 만들었습니다.
+
 ### JPA
 
 ### 🌘 [jpashop](https://github.com/Lee9Bin/Spring_study/tree/main/jpashop)
