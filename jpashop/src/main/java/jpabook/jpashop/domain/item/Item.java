@@ -3,7 +3,6 @@ package jpabook.jpashop.domain.item;
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.Category;
 import jpabook.jpashop.domain.exception.NotEnoughStockException;
-import jpabook.jpashop.domain.exception.NotEnoughtStockException;
 import lombok.Getter;
 import lombok.Setter;
 
