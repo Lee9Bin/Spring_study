@@ -2,29 +2,22 @@ package hellojpa.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "MEMBER_ID")
     private Long id;
-
-    @Column(name = "USERNAME")
     private String name;
+    private String city;
+    private String street;
+    private String zipcode;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void changeTeam(Team team) {
-        this.team = team;
-        //연관 관계 주입을 한번에 처리하도록 연관 관계 편의 메소드를 생성 -> why? 개발자의 실수 방지가 제일 큰 부분!
-        team.getMembers().add(this);
-    }
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -42,5 +35,27 @@ public class Member {
         this.name = name;
     }
 
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
 }
