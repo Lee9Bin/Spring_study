@@ -23,7 +23,7 @@ public class JpaMain {
             // 회원 저장
             Member member = new Member();
             member.setName("member1");
-            member.setTeam(team); // 단방향 연관관계 설정, 참조 저장
+            member.changeTeam(team); // 단방향 연관관계 설정, 참조 저장
             em.persist(member);
 
             em.flush();
@@ -33,6 +33,8 @@ public class JpaMain {
             Member findMember = em.find(Member.class, member.getId());
             // 참조를 사용해서 연관관계 조회
             Team findTeam = findMember.getTeam();
+
+            System.out.println(findTeam);
 
             tx.commit();
         } catch (Exception e) {
