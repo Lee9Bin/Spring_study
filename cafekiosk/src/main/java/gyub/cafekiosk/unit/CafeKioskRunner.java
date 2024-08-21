@@ -1,7 +1,10 @@
 package gyub.cafekiosk.unit;
 
+import java.time.LocalDateTime;
+
 import gyub.cafekiosk.unit.beverages.Americano;
 import gyub.cafekiosk.unit.beverages.Latte;
+import gyub.cafekiosk.unit.order.Order;
 
 public class CafeKioskRunner {
 	public static void main(String[] args) {
@@ -15,6 +18,8 @@ public class CafeKioskRunner {
 
 		int totalPrice = cafeKiosk.calculateTotalPrice();
 		System.out.println("총 주문 가격: " + totalPrice);
+
+		Order order = cafeKiosk.createOrder(LocalDateTime.now());
 
 	}
 }
